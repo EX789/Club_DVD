@@ -16,6 +16,11 @@
     <c:if test="${lista == null}">
         <c:redirect url="/Genero"/>
     </c:if>
+        <c:if test="${msn!=null}">
+            <script>
+                alert('${msn}');
+            </script>
+        </c:if>
     <form action="AgregarPelicula" method="POST">
         <table border="1">
             <tbody>
@@ -33,7 +38,7 @@
                 </tr>
                 <tr>
                     <td>Año</td>
-                    <td><select name="cbAño">
+                    <td><select name="cbAno">
                             <option>2010</option>
                             <option>2011</option>
                             <option>2012</option>
