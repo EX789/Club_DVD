@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <servlet>
-        <servlet-name>CargarGeneros</servlet-name>
-        <servlet-class>servlets.CargarGeneros</servlet-class>
+        <servlet-name>Genero</servlet-name>
+        <servlet-class>servlets.Genero</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AgregarPelicula</servlet-name>
+        <servlet-class>servlets.AgregarPelicula</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>CargarGeneros</servlet-name>
-        <url-pattern>/CargarGeneros</url-pattern>
+        <servlet-name>Genero</servlet-name>
+        <url-pattern>/Genero</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AgregarPelicula</servlet-name>
+        <url-pattern>/AgregarPelicula</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -14,6 +22,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>paginas/AgregarPelicula.jsp</welcome-file>
+        <welcome-file>paginas/agregarPelicula.jsp</welcome-file>
     </welcome-file-list>
 </web-app>
