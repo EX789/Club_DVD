@@ -13,5 +13,5 @@ import java.util.List;
  * @author cetecom
  */
 public interface GeneroDao extends BaseDao<GeneroDto>{
-    public List<String> listarGenero();
+    public List<GeneroDto> listarGenero();
 }

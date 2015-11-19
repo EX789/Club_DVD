@@ -18,16 +18,19 @@ import sql.Conexion;
 public class GeneroDaoImplementado implements GeneroDao{
 
     @Override
-    public List<String> listarGenero() {
-        List<String> lista = null;
+    public List<GeneroDto> listarGenero() {
+        List<GeneroDto> lista = null;
         try {
             Connection conexion = Conexion.getConexion();
-            String query = "SELECT nombre_genero FROM genero";
+            String query = "SELECT * FROM genero";
             PreparedStatement buscar = conexion.prepareStatement(query);
             ResultSet rs = buscar.executeQuery();
             lista = new ArrayList<>();
             while(rs.next()){
-                lista.add(rs.getString("nombre_genero"));
+                GeneroDto dto = new GeneroDto();
+                dto.setId(rs.getInt("id_genero"));
+                dto.setNombre(rs.getString("nombre_genero"));
+                lista.add(dto);
             }
             buscar.close();
             conexion.close();

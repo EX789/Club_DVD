@@ -58,7 +58,7 @@ public class PeliculaDaoImplementado implements PeliculaDao {
             String query = "INSERT INTO `pelicula`(nombre_pelicula,anno_pelicula,fecha_registro,id_genero) VALUES (?,?,?,?)";
             PreparedStatement insertar = conexion.prepareStatement(query);
             insertar.setString(1, dto.getNombre());
-            insertar.setInt(2, dto.getId());
+            insertar.setInt(2, dto.getAño());
             insertar.setDate(3, new java.sql.Date(dto.getFechaRegistro().getTime()));
             insertar.setInt(4, dto.getId_genero());
             insertar.execute();

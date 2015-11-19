@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import dao.*;
+import dto.GeneroDto;
 import java.util.List;
 
 /**
@@ -33,10 +34,15 @@ public class Genero extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            List<String> lista = new GeneroDaoImplementado().listarGenero();
+            List<GeneroDto> lista = new GeneroDaoImplementado().listarGenero();
             System.out.println("Allevoy");
-            request.setAttribute("lista", lista);
-            request.getRequestDispatcher("paginas/agregarPelicula.jsp").forward(request, response);
+            String url = ((HttpServletRequest)request).getPathTranslated();
+            System.out.println(url);
+            
+            if (lista != null) {
+                request.setAttribute("lista", lista);
+                request.getRequestDispatcher("/paginas/agregarPelicula.jsp").forward(request, response);
+            }
         }
     }
 

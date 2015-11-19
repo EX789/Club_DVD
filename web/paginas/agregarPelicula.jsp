@@ -31,10 +31,11 @@
                 <tr>
                     <td>Genero</td>
                     <td><select name="cbSeleccionarGenero">
-                            <c:forEach var="listaGenero" items="${requestScope.lista}">
-                                <option>${listaGenero}</option>
+                            <c:forEach var="listaGenero" items="${lista}">
+                                <option value="${listaGenero.id}">${listaGenero.nombre}</option>
                             </c:forEach>
                         </select></td>
+                    
                 </tr>
                 <tr>
                     <td>Año</td>

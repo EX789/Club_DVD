@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import dto.PeliculaDto;
 import dao.*;
+import java.time.Instant;
+import java.util.Date;
 
 /**
  *
@@ -35,48 +37,9 @@ public class AgregarPelicula extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             PeliculaDto dto = new PeliculaDto();
             dto.setNombre(request.getParameter("txtNombre"));
-            dto.setFechaRegistro(null);
-            dto.setAño(Integer.parseInt(request.getParameter("cbAno".toString())));
-            switch (request.getParameter("cbSeleccionarGenero")) {
-                case "Acción":
-                    dto.setId_genero(1);
-                    break;
-                case "Animación":
-                    dto.setId_genero(2);
-                    break;
-                case "Aventuras":
-                    dto.setId_genero(3);
-                    break;
-                case "Ciencia Ficción":
-                    dto.setId_genero(4);
-                case "Comedia":
-                    dto.setId_genero(5);
-                    break;
-                case "Thriller":
-                    dto.setId_genero(6);
-                    break;
-                case "Romance":
-                    dto.setId_genero(7);
-                    break;
-                case "Documental":
-                    dto.setId_genero(8);
-                    break;
-                case "Drama":
-                    dto.setId_genero(9);
-                    break;
-                case "Infantil":
-                    dto.setId_genero(10);
-                    break;
-                case "Musical":
-                    dto.setId_genero(11);
-                    break;
-                case "Terror":
-                    dto.setId_genero(12);
-                    break;
-                case "Western":
-                    dto.setId_genero(13);
-                    break;
-            }
+            dto.setFechaRegistro(Date.from(Instant.now()));
+            dto.setAño(Integer.parseInt(request.getParameter("cbAno")));
+            dto.setId_genero(Integer.parseInt(request.getParameter("cbSeleccionarGenero")));
 
             String mensaje = null;
             if (new PeliculaDaoImplementado().agregar(dto)) {
