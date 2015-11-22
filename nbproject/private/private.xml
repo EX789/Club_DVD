@@ -3,7 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/raide/Desktop/Club_DVD/trunk/src/java/servlets/AgregarPelicula.java</file>
+            <file>file:/C:/Users/Ivan/Documents/NetBeansProjects/Club_DVD/trunk/web/paginas/agregarPelicula.jsp</file>
+            <file>file:/C:/Users/Ivan/Documents/NetBeansProjects/Club_DVD/trunk/web/paginas/listarPeliculas.jsp</file>
+            <file>file:/C:/Users/Ivan/Documents/NetBeansProjects/Club_DVD/trunk/src/java/servlets/ListarPeliculas.java</file>
+            <file>file:/C:/Users/Ivan/Documents/NetBeansProjects/Club_DVD/trunk/src/java/dto/PeliculaDto.java</file>
         </group>
     </open-files>
 </project-private>

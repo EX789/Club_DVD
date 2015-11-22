@@ -47,8 +47,32 @@ public class PeliculaDaoImplementado implements PeliculaDao {
     }
 
     @Override
-    public List<PeliculaDto> buscarPorGenero(String genero) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<PeliculaDto> buscarPorGenero(int genero) {
+        List<PeliculaDto> lista = null;
+        PeliculaDto dto = new PeliculaDto();
+        try {
+            Connection conexion = Conexion.getConexion();
+            String query = "SELECT * FROM `pelicula`WHERE id_genero="+genero;
+            PreparedStatement buscar = conexion.prepareStatement(query);
+            ResultSet rs = buscar.executeQuery();
+            lista = new ArrayList<>();
+            while (rs.next()) {
+                dto.setId(rs.getInt("id_pelicula"));
+                dto.setNombre(rs.getString("nombre_pelicula"));
+                dto.setFechaRegistro(rs.getDate("fecha_registro"));
+                dto.setAño(rs.getInt("anno_pelicula"));
+                dto.setId_genero(rs.getInt("id_genero"));
+                lista.add(dto);
+            }
+            buscar.close();
+            conexion.close();
+        } catch (SQLException w) {
+            System.out.println("ERROR SQL AL AGREGAR: " + w.getMessage());
+        } catch (Exception e) {
+            System.out.println("ERROR AL AGREGAR: " + e.getMessage());
+            return null;
+        }
+        return lista;
     }
 
     @Override

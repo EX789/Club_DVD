@@ -11,15 +11,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import dao.*;
-import dto.GeneroDto;
 import java.util.List;
-
+import dao.*;
+import dto.PeliculaDto;
 /**
  *
- * @author raide
+ * @author Ivan
  */
-public class Genero extends HttpServlet {
+public class ListarPeliculas extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,15 +33,16 @@ public class Genero extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            List<GeneroDto> lista = new GeneroDaoImplementado().listarGenero();
-            System.out.println("Allevoy");
-            String url = ((HttpServletRequest)request).getPathTranslated();
-            System.out.println(url);
-            
-            if (lista != null) {
-                request.setAttribute("lista", lista);
-                request.getRequestDispatcher("paginas/listarPeliculas.jsp").forward(request, response);
+            List<PeliculaDto> lista = null;
+            if (request.getParameter("cbSeleccionarGenero").equals("(todos)")) {
+                lista = new PeliculaDaoImplementado().buscarPelicula();
             }
+            else{
+                lista = new PeliculaDaoImplementado().buscarPorGenero(Integer.parseInt(request.getParameter("cbSeleccionarGenero")));
+            }
+            
+            request.setAttribute("listaPeliculas", lista);
+            request.getRequestDispatcher("paginas/listarPeliculas.jsp").forward(request, response);
         }
     }
 

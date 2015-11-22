@@ -14,5 +14,5 @@ import java.util.List;
  */
 public interface PeliculaDao extends BaseDao<PeliculaDto>{
     public List<PeliculaDto> buscarPelicula();
-    public List<PeliculaDto> buscarPorGenero(String genero);
+    public List<PeliculaDto> buscarPorGenero(int genero);
 }

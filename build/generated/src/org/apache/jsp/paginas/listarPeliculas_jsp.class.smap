@@ -1,0 +1,19 @@
+SMAP
+listarPeliculas_jsp.java
+JSP
+*S JSP
+*F
++ 0 listarPeliculas.jsp
+paginas/listarPeliculas.jsp
+*L
+5,12:60
+16:113,8
+17:121
+17:144,5
+17,2:124
+18,10:74
+27:162,11
+28:173,6
+29:179
+29,10:86
+*E
