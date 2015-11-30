@@ -11,16 +11,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import dto.PeliculaDto;
 import dao.*;
-import java.time.Instant;
-import java.util.Date;
-
 /**
  *
  * @author raide
  */
-public class AgregarPelicula extends HttpServlet {
+public class EliminarPeliculas extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,26 +31,18 @@ public class AgregarPelicula extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            PeliculaDto dto = new PeliculaDto();
-            dto.setNombre(request.getParameter("txtNombre"));
-            dto.setFechaRegistro(Date.from(Instant.now()));
-            dto.setAño(Integer.parseInt(request.getParameter("cbAno")));
-            dto.setId_genero(Integer.parseInt(request.getParameter("cbSeleccionarGenero")));
-            
             String mensaje = null;
-            if (new PeliculaDaoImplementado().agregar(dto)) {
-                mensaje = "Se agrego correctamente";
-            } else {
-                mensaje = "No se pudo agregar la pelicula, revise";
+            Boolean validar = new PeliculaDaoImplementado().eliminar(Integer.parseInt(request.getParameter("txtID")));
+            if (validar) {
+                mensaje = "Borrado correctamente";
             }
+            else{
+                mensaje = "Error";
+            }
+            
             request.getSession().setAttribute("msn", mensaje);
-            request.getRequestDispatcher("paginas/agregarPelicula.jsp").forward(request, response);
+            request.getRequestDispatcher("paginas/listarPeliculas.jsp").forward(request, response);
         }
-//        } catch (Exception ex) {
-//            mensaje = ex.getMessage();
-//            request.setAttribute("msn", mensaje);
-//            request.getRequestDispatcher("paginas/agregarPelicula.jsp").forward(request, response);
-//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

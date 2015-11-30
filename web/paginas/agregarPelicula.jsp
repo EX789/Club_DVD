@@ -16,7 +16,7 @@
         <c:if test="${lista == null}">
             <c:redirect url="/Genero"/>
         </c:if>
-        <c:if test="${not empty msn}">
+        <c:if test="${not empty sessionScope.msn}">
             <c:set var="mensaje" value="${msn}"/>
             <script>
                 alert('${mensaje}');

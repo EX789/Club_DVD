@@ -19,15 +19,16 @@ public class PeliculaDaoImplementado implements PeliculaDao {
 
     @Override
     public List<PeliculaDto> buscarPelicula() {
-        List<PeliculaDto> lista = null;
-        PeliculaDto dto = new PeliculaDto();
+        List<PeliculaDto> lista = new ArrayList<>();
+
         try {
             Connection conexion = Conexion.getConexion();
             String query = "SELECT * FROM `pelicula`";
             PreparedStatement buscar = conexion.prepareStatement(query);
             ResultSet rs = buscar.executeQuery();
-            lista = new ArrayList<>();
+
             while (rs.next()) {
+                PeliculaDto dto = new PeliculaDto();
                 dto.setId(rs.getInt("id_pelicula"));
                 dto.setNombre(rs.getString("nombre_pelicula"));
                 dto.setFechaRegistro(rs.getDate("fecha_registro"));
@@ -49,14 +50,14 @@ public class PeliculaDaoImplementado implements PeliculaDao {
     @Override
     public List<PeliculaDto> buscarPorGenero(int genero) {
         List<PeliculaDto> lista = null;
-        PeliculaDto dto = new PeliculaDto();
         try {
             Connection conexion = Conexion.getConexion();
-            String query = "SELECT * FROM `pelicula`WHERE id_genero="+genero;
+            String query = "SELECT * FROM `pelicula`WHERE id_genero=" + genero;
             PreparedStatement buscar = conexion.prepareStatement(query);
             ResultSet rs = buscar.executeQuery();
             lista = new ArrayList<>();
             while (rs.next()) {
+                PeliculaDto dto = new PeliculaDto();
                 dto.setId(rs.getInt("id_pelicula"));
                 dto.setNombre(rs.getString("nombre_pelicula"));
                 dto.setFechaRegistro(rs.getDate("fecha_registro"));
@@ -102,7 +103,7 @@ public class PeliculaDaoImplementado implements PeliculaDao {
     public Boolean eliminar(Integer id) {
         try {
             Connection conexion = Conexion.getConexion();
-            String query = "DELETE FROM `pelicula` WHERE id_pelicula=?";
+            String query = "DELETE FROM `pelicula` WHERE id_genero=?";
             PreparedStatement insertar = conexion.prepareStatement(query);
             insertar.setInt(1, id);
             insertar.execute();

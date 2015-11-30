@@ -12,6 +12,10 @@
         <servlet-name>ListarPeliculas</servlet-name>
         <servlet-class>servlets.ListarPeliculas</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EliminarPeliculas</servlet-name>
+        <servlet-class>servlets.EliminarPeliculas</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Genero</servlet-name>
         <url-pattern>/Genero</url-pattern>
@@ -24,12 +28,16 @@
         <servlet-name>ListarPeliculas</servlet-name>
         <url-pattern>/ListarPeliculas</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarPeliculas</servlet-name>
+        <url-pattern>/EliminarPeliculas</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>paginas/listarPeliculas.jsp</welcome-file>
+        <welcome-file>paginas/pruebaMEN78X.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

@@ -41,7 +41,7 @@ public class ListarPeliculas extends HttpServlet {
                 lista = new PeliculaDaoImplementado().buscarPorGenero(Integer.parseInt(request.getParameter("cbSeleccionarGenero")));
             }
             
-            request.setAttribute("listaPeliculas", lista);
+            request.getSession().setAttribute("listaPeliculas", lista);
             request.getRequestDispatcher("paginas/listarPeliculas.jsp").forward(request, response);
         }
     }

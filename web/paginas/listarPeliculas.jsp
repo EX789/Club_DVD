@@ -16,6 +16,9 @@
         <c:if test="${empty lista}">
             <c:redirect url="/Genero"/>
         </c:if>
+        <c:if test="${not empty sessionScope.msn}">
+            <script>alert('${msn}')</script>
+        </c:if>
         <h1>Listado de peliculas</h1>
         <form action="ListarPeliculas" method="POST">
             <table border="0">
@@ -28,34 +31,36 @@
                                     <option value="${listaGeneros.id}">${listaGeneros.nombre}</option>
                                 </c:forEach>
                             </select></td>
-                            <td><input type="submit" value="LISTAR" name="btnListar" /></td>
+                        <td><input type="submit" value="LISTAR" name="btnListar" /></td>
                     </tr>
                 </tbody>
             </table>
         </form>
-        <c:if test="${not empty requestScope.listaPeliculas}">
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Genero</th>
-                        <th>Año</th>
-                        <th>Fecha Registro</th>
-                        <th>Accion</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach var="pelicula" items="${requestScope.listaPeliculas}">
-                    <tr>
-                        <td>${pelicula.nombre}</td>
-                        <td>${pelicula.id_genero}</td>
-                        <td>${pelicula.año}</td>
-                        <td>${pelicula.fechaRegistro}</td>
-                        <td><input type="submit" value="ELIMINAR" name="btnEliminar" /></td>
-                    </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
-        </c:if>
+        <form action="EliminarPeliculas" method="POST">
+            <c:if test="${not empty sessionScope.listaPeliculas}">
+                <table border="1" >
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Genero</th>
+                            <th>Año</th>
+                            <th>Fecha Registro</th>
+                            <th>Accion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="pelicula" items="${listaPeliculas}">
+                            <tr>
+                                <td><input type="text" name="txtNombre" value="${pelicula.nombre}" readonly="readonly" /></td>
+                                <td><input type="text" name="txtID" value="${pelicula.id_genero}" readonly="readonly" /></td>
+                                <td><input type="text" name="txtAno" value="${pelicula.año}" readonly="readonly" /></td>
+                                <td><input type="text" name="txtFechaRegistro" value="${pelicula.fechaRegistro}" readonly="readonly" /></td>
+                                <td><input type="submit" value="ELIMINAR" name="btnEliminar" /></td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+            </c:if>
+        </form>
     </body>
 </html>
